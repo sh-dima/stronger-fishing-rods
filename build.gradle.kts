@@ -1,8 +1,8 @@
-//import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 
 plugins {
     alias(libs.plugins.kotlin)
-//    alias(libs.plugins.shadow)
+    alias(libs.plugins.shadow)
 
     alias(libs.plugins.paper)
     alias(libs.plugins.paper.run)
@@ -16,9 +16,8 @@ repositories {
 
 dependencies {
     library(kotlin("stdlib"))
-//    library(libs.commands)
-//    library(libs.config)
-//    implementation(libs.metrics)
+    library(libs.config)
+    implementation(libs.metrics)
 
     testImplementation(libs.kotlin.test)
     testImplementation(libs.junit.jupiter)
@@ -77,28 +76,29 @@ tasks {
         }
     }
 
-//    withType<ShadowJar> {
-//        from("assets/text/licenses") {
-//            into("licenses")
-//        }
-//
-//        archiveClassifier = ""
-//
-//        enableAutoRelocation = true
-//        relocationPrefix = "org.example.project.dependencies"
-//
-//        minimizeJar = true
-//    }
-//
-//    jar {
-//        enabled = false
-//    }
+    withType<ShadowJar> {
+        from("assets/text/licenses") {
+            into("licenses")
+        }
+
+        archiveClassifier = ""
+
+        enableAutoRelocation = true
+        relocationPrefix = "io.gitlab.shdima.reel.dependencies"
+
+        minimizeJar = true
+    }
+
+    jar {
+        enabled = false
+    }
 }
 
 bukkit {
-    name = "Template"
+    name = "StrongerFishingRods"
+    description = "A Minecraft Paper plugin that makes the strength of fishing rods configurable"
 
-    main = "org.example.project.Plugin"
+    main = "io.gitlab.shdima.reel.StrongerFishingRods"
     apiVersion = "1.20"
     version = project.version.toString()
 
@@ -106,5 +106,5 @@ bukkit {
         "Esoteric Enderman"
     )
 
-    website = "https://gitlab.com/esoterictemplates/template-minecraft-plugin"
+    website = "https://gitlab.com/shdima/stronger-fishing-rods"
 }

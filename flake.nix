@@ -1,5 +1,5 @@
 {
-	description = "A template repository for Minecraft plugins";
+	description = "A Minecraft Paper plugin that makes the strength of fishing rods configurable";
 
 	inputs = {
 		nixpkgs.url = "github:NixOS/nixpkgs/nixos-25.05";

@@ -1,13 +1,12 @@
 [versions]
-#commands = "10.1.2"
-#config = "4.6.1"
-#metrics = "3.1.0"
+config = "4.6.1"
+metrics = "3.1.0"
 
 junit-jupiter = "5.12.1"
 
 
 kotlin = "2.1.20"
-#shadow = "9.1.0"
+shadow = "9.1.0"
 
 paper = "2.0.0-beta.18"
 paper-run = "2.3.1"
@@ -15,9 +14,8 @@ paper-run = "2.3.1"
 yml = "0.8.0"
 
 [libraries]
-#commands = { module = "dev.jorel:commandapi-bukkit-shade-mojang-mapped", version.ref = "commands" }
-#config = { module = "de.exlll:configlib-yaml", version.ref = "config" }
-#metrics = { module = "org.bstats:bstats-bukkit", version.ref = "metrics" }
+config = { module = "de.exlll:configlib-yaml", version.ref = "config" }
+metrics = { module = "org.bstats:bstats-bukkit", version.ref = "metrics" }
 
 junit-jupiter = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter" }
 junit-platform = { module = "org.junit.platform:junit-platform-launcher" }
@@ -25,7 +23,7 @@ kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test-junit5" }
 
 [plugins]
 kotlin = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }
-#shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
+shadow = { id = "com.gradleup.shadow", version.ref = "shadow" }
 
 paper = { id = "io.papermc.paperweight.userdev", version.ref = "paper" }
 paper-run = { id = "xyz.jpenilla.run-paper", version.ref = "paper-run" }
