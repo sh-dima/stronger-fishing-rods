@@ -2,11 +2,14 @@ package io.gitlab.shdima.reel
 
 import org.bstats.bukkit.Metrics
 import de.exlll.configlib.YamlConfigurations
+import org.bukkit.event.EventHandler
+import org.bukkit.event.Listener
+import org.bukkit.event.player.PlayerFishEvent
 import org.bukkit.plugin.java.JavaPlugin
 import java.nio.file.Path
 
 @Suppress("unused")
-class StrongerFishingRods : JavaPlugin() {
+class StrongerFishingRods : JavaPlugin(), Listener {
 
     private lateinit var config: Config
 
@@ -25,5 +28,25 @@ class StrongerFishingRods : JavaPlugin() {
         } catch (exception: Exception) {
             exception.printStackTrace()
         }
+
+        server.pluginManager.registerEvents(this, this)
+    }
+
+    @EventHandler
+    private fun onReel(event: PlayerFishEvent) {
+        if (event.state != PlayerFishEvent.State.CAUGHT_ENTITY) return
+
+        val entity = event.caught ?: return
+        val targetLocation = entity.location
+
+        val player = event.player
+        val playerLocation = player.location
+
+        val distance = playerLocation.distance(targetLocation)
+        val difference = playerLocation.toVector().subtract(targetLocation.toVector())
+        val direction = difference.normalize()
+        val pullStrength = direction.multiply(distance / 20.0)
+
+        entity.velocity = entity.velocity.add(pullStrength)
     }
 }
