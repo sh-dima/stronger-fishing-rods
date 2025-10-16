@@ -46,7 +46,7 @@ class StrongerFishingRods : JavaPlugin(), Listener {
         val distance = playerLocation.distance(targetLocation)
         val difference = playerLocation.toVector().subtract(targetLocation.toVector())
         val direction = difference.normalize()
-        val pullStrength = direction.multiply(distance / 20.0)
+        val pullStrength = direction.multiply(config.strength * (distance / 20.0))
 
         entity.velocity = entity.velocity.add(pullStrength)
     }
