@@ -2,6 +2,7 @@ package io.gitlab.shdima.reel
 
 import org.bstats.bukkit.Metrics
 import de.exlll.configlib.YamlConfigurations
+import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerFishEvent
@@ -21,7 +22,7 @@ class StrongerFishingRods : JavaPlugin(), Listener {
             Config()
         }
 
-//        YamlConfigurations.save(configFile, Config::class.java, config)
+        YamlConfigurations.save(configFile, Config::class.java, config)
 
         try {
             Metrics(this, 27595)
@@ -48,5 +49,18 @@ class StrongerFishingRods : JavaPlugin(), Listener {
         val pullStrength = direction.multiply(distance / 20.0)
 
         entity.velocity = entity.velocity.add(pullStrength)
+    }
+
+    @EventHandler
+    private fun onAggressiveReel(event: PlayerFishEvent) {
+        if (!config.`rod-aggression`) return
+
+        if (event.state != PlayerFishEvent.State.CAUGHT_ENTITY) return
+
+        val entity = event.caught as? LivingEntity ?: return
+        val player = event.player
+
+        entity.damage(0.1, player)
+        entity.health += 0.1
     }
 }
