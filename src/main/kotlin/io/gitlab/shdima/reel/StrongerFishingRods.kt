@@ -60,7 +60,9 @@ class StrongerFishingRods : JavaPlugin(), Listener {
         val entity = event.caught as? LivingEntity ?: return
         val player = event.player
 
-        entity.damage(0.1, player)
-        entity.health += 0.1
+        val damage = entity.health / 2.0
+
+        entity.damage(damage, player)
+        entity.health += damage
     }
 }
