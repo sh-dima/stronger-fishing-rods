@@ -63,7 +63,8 @@ class StrongerFishingRods : JavaPlugin(), Listener {
         val player = event.player
 
         val damage = min(entity.health / 2.0, 0.1)
-        val maxHealth = entity.getAttribute(Attribute.MAX_HEALTH)?.value ?: entity.health
+        val attribute = try { Attribute.valueOf("MAX_HEALTH") } catch(exception: IllegalArgumentException) { Attribute.valueOf("GENERIC_MAX_HEALTH") }
+        val maxHealth = entity.getAttribute(attribute)?.value ?: entity.health
 
         entity.damage(damage, player)
         entity.health = min(maxHealth, entity.health + damage)
