@@ -92,6 +92,12 @@ tasks {
     jar {
         enabled = false
     }
+
+    runServer {
+        val version = project.findProperty("minecraft.version") as? String ?: "1.21.8"
+
+        minecraftVersion(version)
+    }
 }
 
 bukkit {
