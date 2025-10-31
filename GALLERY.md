@@ -1,6 +1,11 @@
 Gallery
 =======
 
+[Stronger Fishing Rods Logo](./assets/images/icons/stronger-fishing-rods.xcf)
+--------------------------
+
+The logo of this project.
+
 Pulling a Creeper
 -----------------
 
