@@ -2,12 +2,14 @@ package io.gitlab.shdima.reel
 
 import org.bstats.bukkit.Metrics
 import de.exlll.configlib.YamlConfigurations
+import org.bukkit.attribute.Attribute
 import org.bukkit.entity.LivingEntity
 import org.bukkit.event.EventHandler
 import org.bukkit.event.Listener
 import org.bukkit.event.player.PlayerFishEvent
 import org.bukkit.plugin.java.JavaPlugin
 import java.nio.file.Path
+import kotlin.math.min
 
 @Suppress("unused")
 class StrongerFishingRods : JavaPlugin(), Listener {
@@ -60,9 +62,10 @@ class StrongerFishingRods : JavaPlugin(), Listener {
         val entity = event.caught as? LivingEntity ?: return
         val player = event.player
 
-        val damage = entity.health / 2.0
+        val damage = min(entity.health / 2.0, 0.1)
+        val maxHealth = entity.getAttribute(Attribute.MAX_HEALTH)?.value ?: entity.health
 
         entity.damage(damage, player)
-        entity.health += damage
+        entity.health = min(maxHealth, entity.health + damage)
     }
 }
