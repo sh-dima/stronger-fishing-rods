@@ -17,3 +17,6 @@ run/*
 
 # Don't ignore EULA agreement
 !run/eula.txt
+
+# Exported icon
+*.png
