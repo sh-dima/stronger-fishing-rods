@@ -113,5 +113,5 @@ bukkit {
         "Esoteric Enderman"
     )
 
-    website = "https://gitlab.com/shdima/stronger-fishing-rods"
+    website = "https://gitlab.com/-/p/75734098"
 }
